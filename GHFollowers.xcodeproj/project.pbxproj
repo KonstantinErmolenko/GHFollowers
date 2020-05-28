@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A952D4FF2480399B005BA20F /* FollowersListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A952D4FE2480399B005BA20F /* FollowersListVC.swift */; };
 		A9614AC8247D6DFD0076A5B6 /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9614AC7247D6DFD0076A5B6 /* GFButton.swift */; };
 		A9614ACA247D840F0076A5B6 /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9614AC9247D840F0076A5B6 /* GFTextField.swift */; };
 		A96A1DD1247C3AAD00B84212 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96A1DD0247C3AAD00B84212 /* SearchVC.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A952D4FE2480399B005BA20F /* FollowersListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListVC.swift; sourceTree = "<group>"; };
 		A9614AC7247D6DFD0076A5B6 /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
 		A9614AC9247D840F0076A5B6 /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
 		A96A1DD0247C3AAD00B84212 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchVC.swift; path = "../../../Take home project/GHFollowers/GHFollowers/SearchVC.swift"; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				A96A1DD0247C3AAD00B84212 /* SearchVC.swift */,
 				A96A1DD4247C3B0C00B84212 /* FavoritesListVC.swift */,
 				A9614AC7247D6DFD0076A5B6 /* GFButton.swift */,
+				A952D4FE2480399B005BA20F /* FollowersListVC.swift */,
 				A9614AC9247D840F0076A5B6 /* GFTextField.swift */,
 			);
 			path = GHFollowers;
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9614ACA247D840F0076A5B6 /* GFTextField.swift in Sources */,
+				A952D4FF2480399B005BA20F /* FollowersListVC.swift in Sources */,
 				A96A1DD5247C3B0C00B84212 /* FavoritesListVC.swift in Sources */,
 				A9614AC8247D6DFD0076A5B6 /* GFButton.swift in Sources */,
 				A96A1DD1247C3AAD00B84212 /* SearchVC.swift in Sources */,
