@@ -10,8 +10,8 @@ import UIKit
 
 class SearchVC: UIViewController {
     
-    let logoImageView           = UIImageView()
-    let usernameTextField       = GFTextField()
+    let logoImageView      = UIImageView()
+    let usernameTextField  = GFTextField()
     let callToActionButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
     
     var isUsernameEntered: Bool { return !usernameTextField.text!.isEmpty }
@@ -43,12 +43,15 @@ class SearchVC: UIViewController {
     
     @objc func pushFollowersListVC() {
         guard isUsernameEntered else {
-            print("No username")
+            presentFGAlertOnMainThread(
+                title: "Empty Username",
+                message: "Please enter a username. We need to know who to look for 😀",
+                buttonTitle: "Ok")
             return
         }
-        let followersListVC         = FollowersListVC()
-        followersListVC.username    = usernameTextField.text
-        followersListVC.title       = usernameTextField.text
+        let followersListVC      = FollowersListVC()
+        followersListVC.username = usernameTextField.text
+        followersListVC.title    = usernameTextField.text
         navigationController?.pushViewController(followersListVC, animated: true)
     }
     
