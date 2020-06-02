@@ -30,31 +30,8 @@ class SearchVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
-    // MARK: - User Interface
-    func createTapGuesterRecogniser() {
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
-        view.addGestureRecognizer(tap)
-    }
-    
-    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        usernameTextField.text = ""
-    }
-    
-    @objc func pushFollowersListVC() {
-        guard isUsernameEntered else {
-            presentGFAlertOnMainThread(
-                title: "Empty Username",
-                message: "Please enter a username. We need to know who to look for 😀",
-                buttonTitle: "Ok")
-            return
-        }
-        let followersListVC      = FollowersListVC()
-        followersListVC.username = usernameTextField.text
-        followersListVC.title    = usernameTextField.text
-        navigationController?.pushViewController(followersListVC, animated: true)
-    }
-    
+        
+    // MARK: - UI Configuration
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -91,6 +68,31 @@ class SearchVC: UIViewController {
             callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             callToActionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+
+    // MARK: - Navigation
+    @objc func pushFollowersListVC() {
+        guard isUsernameEntered else {
+            presentGFAlertOnMainThread(
+                title: "Empty Username",
+                message: "Please enter a username. We need to know who to look for 😀",
+                buttonTitle: "Ok")
+            return
+        }
+        let followersListVC      = FollowersListVC()
+        followersListVC.username = usernameTextField.text
+        followersListVC.title    = usernameTextField.text
+        navigationController?.pushViewController(followersListVC, animated: true)
+    }
+
+    // MARK: - Other Methods
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        usernameTextField.text = ""
+    }
+
+    func createTapGuesterRecogniser() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
 }
 
