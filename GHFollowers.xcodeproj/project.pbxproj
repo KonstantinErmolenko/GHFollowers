@@ -107,8 +107,8 @@
 			children = (
 				A9A24C4B247AD244006BCB06 /* AppDelegate.swift */,
 				A9A24C4D247AD244006BCB06 /* SceneDelegate.swift */,
-				A9A24C54247AD246006BCB06 /* Assets.xcassets */,
 				A9A24C56247AD246006BCB06 /* LaunchScreen.storyboard */,
+				A9A24C54247AD246006BCB06 /* Assets.xcassets */,
 				A9A24C59247AD246006BCB06 /* Info.plist */,
 			);
 			path = Support;
