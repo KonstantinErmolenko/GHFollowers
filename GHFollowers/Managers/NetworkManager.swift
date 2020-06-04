@@ -6,11 +6,12 @@
 //  Copyright © 2020 Ермоленко Константин. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
-    static let shared = NetworkManager()
-    let baseUrl       = "https://api.github.com"
+    static let shared   = NetworkManager()
+    let cache           = NSCache<NSString, UIImage>()
+    private let baseUrl = "https://api.github.com"
     
     private init() {}
     
