@@ -27,6 +27,7 @@
 		A9A24C4E247AD244006BCB06 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A24C4D247AD244006BCB06 /* SceneDelegate.swift */; };
 		A9A24C55247AD246006BCB06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A24C54247AD246006BCB06 /* Assets.xcassets */; };
 		A9A24C58247AD246006BCB06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A24C56247AD246006BCB06 /* LaunchScreen.storyboard */; };
+		A9B312C1248BFE7D00F01665 /* GFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B312C0248BFE7D00F01665 /* GFEmptyStateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		A9A24C54247AD246006BCB06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A24C57247AD246006BCB06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9A24C59247AD246006BCB06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9B312C0248BFE7D00F01665 /* GFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFEmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,12 +97,13 @@
 		A987942D2485895200C48AC8 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
-				A9897D672486B64B00F63FA8 /* Cells */,
+				A9B312BF248BFE1200F01665 /* View */,
+				A9B312BB248BFD9000F01665 /* ViewControllers */,
+				A9B312BC248BFD9D00F01665 /* TextFields */,
 				A98794302485897100C48AC8 /* Labels */,
-				A95AB35B248415FD0008A301 /* GFAlertVC.swift */,
-				A9614AC9247D840F0076A5B6 /* GFTextField.swift */,
-				A9614AC7247D6DFD0076A5B6 /* GFButton.swift */,
-				A9897D6A2486B7DE00F63FA8 /* GFAvatarImageView.swift */,
+				A9B312BE248BFDC000F01665 /* Buttons */,
+				A9B312BD248BFDB200F01665 /* ImageViews */,
+				A9897D672486B64B00F63FA8 /* Cells */,
 			);
 			path = "Custom views";
 			sourceTree = "<group>";
@@ -179,6 +182,46 @@
 				A987942E2485895C00C48AC8 /* Support */,
 			);
 			path = GHFollowers;
+			sourceTree = "<group>";
+		};
+		A9B312BB248BFD9000F01665 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A95AB35B248415FD0008A301 /* GFAlertVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A9B312BC248BFD9D00F01665 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				A9614AC9247D840F0076A5B6 /* GFTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		A9B312BD248BFDB200F01665 /* ImageViews */ = {
+			isa = PBXGroup;
+			children = (
+				A9897D6A2486B7DE00F63FA8 /* GFAvatarImageView.swift */,
+			);
+			path = ImageViews;
+			sourceTree = "<group>";
+		};
+		A9B312BE248BFDC000F01665 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				A9614AC7247D6DFD0076A5B6 /* GFButton.swift */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		A9B312BF248BFE1200F01665 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9B312C0248BFE7D00F01665 /* GFEmptyStateView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +308,7 @@
 				A95AB35A248413230008A301 /* GFBodyLabel.swift in Sources */,
 				A987943324858FDF00C48AC8 /* Follower.swift in Sources */,
 				A95AB35824840E1A0008A301 /* GFTitleLabel.swift in Sources */,
+				A9B312C1248BFE7D00F01665 /* GFEmptyStateView.swift in Sources */,
 				A97ACE8424863B7A00797935 /* NetworkManager.swift in Sources */,
 				A96A1DD1247C3AAD00B84212 /* SearchVC.swift in Sources */,
 				A9A24C4C247AD244006BCB06 /* AppDelegate.swift in Sources */,
