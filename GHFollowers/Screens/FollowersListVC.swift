@@ -24,6 +24,7 @@ class FollowersListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configueViewController()
+        configueSearchController()
         configueCollectionView()
         getFollowers(for: username, on: page)
         configueDataSource()
@@ -52,6 +53,14 @@ class FollowersListVC: UIViewController {
                                 forCellWithReuseIdentifier: FollowerCell.reuseID)
     }
     
+    func configueSearchController() {
+        let searchController                                  = UISearchController()
+         searchController.searchResultsUpdater                 = self
+        searchController.searchBar.delegate                   = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController                       = searchController
+    }
+     
     // MARK: - Data recieving
     func getFollowers(for username: String, on page: Int) {
         showLoadingView()
@@ -64,16 +73,18 @@ class FollowersListVC: UIViewController {
                 self.hasMoreFollowers = followers.count == 100
                 self.followers.append(contentsOf: followers)
                 if followers.isEmpty {
-                    let message = "This user doesn't have any followers. Go follow them 😉."
+                    let message = "This user doesn't have any followers 😔."
                     DispatchQueue.main.async { self.showEmptyStateView(with: message, in: self.view) }
                     return
                 }
-                self.updateData()
+                self.updateData(on: self.followers)
                 
             case .failure(let error):
-                self.presentGFAlertOnMainThread(title: "Bad Stuf Happend",
-                                                message: error.rawValue,
-                                                buttonTitle: "Ok")
+                self.presentGFAlertOnMainThread(
+                    title: "Bad Stuf Happend",
+                    message: error.rawValue,
+                    buttonTitle: "Ok"
+                )
             }
         }
     }
@@ -89,7 +100,7 @@ class FollowersListVC: UIViewController {
         })
     }
     
-    func updateData() {
+    func updateData(on followers: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
         snapshot.appendItems(followers)
@@ -109,5 +120,19 @@ extension FollowersListVC: UICollectionViewDelegate {
             page += 1
             getFollowers(for: username, on: page)
         }
+    }
+}
+
+extension FollowersListVC: UISearchResultsUpdating, UISearchBarDelegate {
+   
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text?.lowercased(), !filter.isEmpty else { return }
+        
+        let filteredFollowers = followers.filter { $0.login.lowercased().contains(filter)}
+        updateData(on: filteredFollowers)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        updateData(on: followers)
     }
 }
