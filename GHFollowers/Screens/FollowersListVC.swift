@@ -46,6 +46,13 @@ class FollowersListVC: UIViewController {
     func configueViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
+
+        let addButton = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(addButtonTapped)
+        )
+        navigationItem.rightBarButtonItem = addButton
     }
     
     func configueCollectionView() {
@@ -62,7 +69,7 @@ class FollowersListVC: UIViewController {
     
     func configueSearchController() {
         let searchController                                  = UISearchController()
-         searchController.searchResultsUpdater                 = self
+        searchController.searchResultsUpdater                 = self
         searchController.searchBar.delegate                   = self
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController                       = searchController
@@ -112,6 +119,10 @@ class FollowersListVC: UIViewController {
         snapshot.appendSections([.main])
         snapshot.appendItems(followers)
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+
+    @objc func addButtonTapped() {
+        print("addButton tapped")
     }
 }
 
