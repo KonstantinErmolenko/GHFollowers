@@ -28,6 +28,7 @@ class SearchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        usernameTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
         
@@ -35,7 +36,7 @@ class SearchVC: UIViewController {
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image = UIImage(named: "gh-logo")
+        logoImageView.image = Images.ghLogo
         
         let topConstraintConstant: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 20 : 80
                 
@@ -81,9 +82,10 @@ class SearchVC: UIViewController {
                 buttonTitle: "Ok")
             return
         }
-        let followersListVC      = FollowersListVC()
-        followersListVC.username = usernameTextField.text
-        followersListVC.title    = usernameTextField.text
+        
+        usernameTextField.resignFirstResponder()
+        
+        let followersListVC = FollowersListVC(username: usernameTextField.text!)
         navigationController?.pushViewController(followersListVC, animated: true)
     }
 
@@ -93,7 +95,7 @@ class SearchVC: UIViewController {
     }
 
     func createTapGuesterRecogniser() {
-        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
     }
 }
