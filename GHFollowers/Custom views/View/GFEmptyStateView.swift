@@ -10,8 +10,8 @@ import UIKit
 
 class GFEmptyStateView: UIView {
 
-    let messageLabel = GFTitleLabel(textAlignment: .center, fontSize: 28)
-    let logoImageView    = UIImageView()
+    let messageLabel  = GFTitleLabel(textAlignment: .center, fontSize: 28)
+    let logoImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +31,8 @@ class GFEmptyStateView: UIView {
     func configue() {
         addSubview(messageLabel)
         addSubview(logoImageView)
+        
+        backgroundColor = .systemBackground
         
         messageLabel.textColor     = .secondaryLabel
         messageLabel.numberOfLines = 3
