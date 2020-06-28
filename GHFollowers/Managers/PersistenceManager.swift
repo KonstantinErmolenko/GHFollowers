@@ -18,7 +18,7 @@ enum PersistenceManager {
     
     enum Keys { static let favorites = "favorites" }
 
-    static func updateFavorites(with user: Follower, action: PersistenceActionType, completed: @escaping (GFError?) -> Void) {
+    static func updateFavorites(with favorite: Follower, action: PersistenceActionType, completed: @escaping (GFError?) -> Void) {
         retrieveFavorites { result in
             switch result {
             case .success(let favorites):
@@ -26,14 +26,14 @@ enum PersistenceManager {
                 
                 switch action {
                 case .add:
-                    guard !retrievedFavorites.contains(user) else {
+                    guard !retrievedFavorites.contains(favorite) else {
                         completed(.alreadyInFavorites)
                         return
                     }
-                    retrievedFavorites.append(user)
+                    retrievedFavorites.append(favorite)
                     
                 case .remove:
-                    retrievedFavorites.removeAll { $0.login == user.login }
+                    retrievedFavorites.removeAll { $0.login == favorite.login }
                 }
                 
                 completed(saveFavorites(favorites: retrievedFavorites))
