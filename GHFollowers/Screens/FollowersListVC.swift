@@ -122,7 +122,7 @@ class FollowersListVC: UIViewController {
     }
 
     @objc func addButtonTapped() {
-        print("addButton tapped")
+        print(#function, "[\(self)]")
     }
 }
 
