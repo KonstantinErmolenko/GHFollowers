@@ -15,11 +15,9 @@ class GFSecondaryTitleLable: UILabel {
         configue()
     }
     
-    init(fontSize: CGFloat) {
-        super.init(frame: .zero)
-        
+    convenience init(fontSize: CGFloat) {
+        self.init(frame: .zero)
         self.font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
-        configue()
     }
     
     required init?(coder: NSCoder) {

@@ -18,10 +18,9 @@ class GFEmptyStateView: UIView {
         configue()
     }
     
-    init(message: String) {
-        super.init(frame: .zero)
+    convenience init(message: String) {
+        self.init(frame: .zero)
         messageLabel.text = message
-        configue()
     }
     
     required init?(coder: NSCoder) {
