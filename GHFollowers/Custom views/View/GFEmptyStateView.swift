@@ -36,7 +36,7 @@ class GFEmptyStateView: UIView {
         messageLabel.textColor     = .secondaryLabel
         messageLabel.numberOfLines = 3
         
-        logoImageView.image        = UIImage(named: "empty-state-logo")
+        logoImageView.image        = Images.emptyStateLogo
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
         let topConstraintConstant: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? -90 : -150

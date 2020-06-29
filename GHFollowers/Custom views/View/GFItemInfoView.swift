@@ -59,16 +59,16 @@ class GFItemInfoView: UIView {
         switch itemInfoType {
         case .repos:
             titleLabel.text       = "Public Repos"
-            symbolImageView.image = UIImage(systemName: SFSymbols.repos)
+            symbolImageView.image = SFSymbols.repos
         case .gists:
             titleLabel.text       = "Public Gists"
-            symbolImageView.image = UIImage(systemName: SFSymbols.gists)
+            symbolImageView.image = SFSymbols.gists
         case .followers:
             titleLabel.text       = "Followers"
-            symbolImageView.image = UIImage(systemName: SFSymbols.followers)
+            symbolImageView.image = SFSymbols.followers
         case .following:
             titleLabel.text       = "Following"
-            symbolImageView.image = UIImage(systemName: SFSymbols.following)
+            symbolImageView.image = SFSymbols.following
         }
         
         countLabel.text = String(count)
