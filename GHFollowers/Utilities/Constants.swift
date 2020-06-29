@@ -46,4 +46,8 @@ enum DeviceTypes {
     static func isiPhoneXAspectRatio() -> Bool {
         return isiPhoneX || isiPhoneXsMaxAndXr
     }
+    
+    static func isSmallScreenSize() -> Bool {
+        return DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed
+    }
 }
