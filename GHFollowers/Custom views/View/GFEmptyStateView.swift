@@ -9,7 +9,7 @@
 import UIKit
 
 class GFEmptyStateView: UIView {
-
+    
     let messageLabel  = GFTitleLabel(textAlignment: .center, fontSize: 28)
     let logoImageView = UIImageView()
     
@@ -28,26 +28,34 @@ class GFEmptyStateView: UIView {
     }
     
     func configue() {
-        addSubview(messageLabel)
-        addSubview(logoImageView)
-        
+        configueMessageLabel()
+        configueLogoImageView()
         backgroundColor = .systemBackground
+    }
+    
+    func configueMessageLabel() {
+        addSubview(messageLabel)
         
         messageLabel.textColor     = .secondaryLabel
         messageLabel.numberOfLines = 3
         
-        logoImageView.image        = Images.emptyStateLogo
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let topConstant: CGFloat    = DeviceTypes.isSmallScreenSize() ? -85 : -150
-        let bottomConstant: CGFloat = DeviceTypes.isSmallScreenSize() ? 85 : 40
-        
+        let topConstant: CGFloat   = DeviceTypes.isSmallScreenSize() ? -85 : -150
         NSLayoutConstraint.activate([
             messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: topConstant),
             messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
             messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
-            messageLabel.heightAnchor.constraint(equalToConstant: 200),
-            
+            messageLabel.heightAnchor.constraint(equalToConstant: 200)
+        ])
+    }
+    
+    func configueLogoImageView() {
+        addSubview(logoImageView)
+        
+        logoImageView.image = Images.emptyStateLogo
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let bottomConstant: CGFloat = DeviceTypes.isSmallScreenSize() ? 85 : 40
+        NSLayoutConstraint.activate([
             logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
             logoImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
             logoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 170),
