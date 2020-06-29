@@ -38,6 +38,7 @@
 		A9AD0B6024A51A6000074843 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD0B5F24A51A6000074843 /* Date+Ext.swift */; };
 		A9AD0B6224A51A8400074843 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AD0B6124A51A8400074843 /* String+Ext.swift */; };
 		A9B312C1248BFE7D00F01665 /* GFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B312C0248BFE7D00F01665 /* GFEmptyStateView.swift */; };
+		A9C7922824A9C89600ED8F0A /* GFAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C7922724A9C89600ED8F0A /* GFAlertContainerView.swift */; };
 		A9D77C36249FC66800B4AF0E /* GFUserInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D77C35249FC66800B4AF0E /* GFUserInfoHeaderVC.swift */; };
 		A9D77C38249FC69000B4AF0E /* GFSecondaryTitleLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D77C37249FC69000B4AF0E /* GFSecondaryTitleLable.swift */; };
 		A9D77C3A249FE44000B4AF0E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D77C39249FE44000B4AF0E /* Constants.swift */; };
@@ -77,6 +78,7 @@
 		A9AD0B5F24A51A6000074843 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		A9AD0B6124A51A8400074843 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		A9B312C0248BFE7D00F01665 /* GFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFEmptyStateView.swift; sourceTree = "<group>"; };
+		A9C7922724A9C89600ED8F0A /* GFAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertContainerView.swift; sourceTree = "<group>"; };
 		A9D77C35249FC66800B4AF0E /* GFUserInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFUserInfoHeaderVC.swift; sourceTree = "<group>"; };
 		A9D77C37249FC69000B4AF0E /* GFSecondaryTitleLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFSecondaryTitleLable.swift; sourceTree = "<group>"; };
 		A9D77C39249FE44000B4AF0E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			children = (
 				A9B312C0248BFE7D00F01665 /* GFEmptyStateView.swift */,
 				A9702B3424A368C9001444F5 /* GFItemInfoView.swift */,
+				A9C7922724A9C89600ED8F0A /* GFAlertContainerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				A97ACE8724867A9A00797935 /* GFError.swift in Sources */,
 				A9D77C36249FC66800B4AF0E /* GFUserInfoHeaderVC.swift in Sources */,
 				A95AB35A248413230008A301 /* GFBodyLabel.swift in Sources */,
+				A9C7922824A9C89600ED8F0A /* GFAlertContainerView.swift in Sources */,
 				A987943324858FDF00C48AC8 /* Follower.swift in Sources */,
 				A9AD0B6024A51A6000074843 /* Date+Ext.swift in Sources */,
 				A98915D524A8C65C00FCD0E1 /* PersistenceManager.swift in Sources */,
