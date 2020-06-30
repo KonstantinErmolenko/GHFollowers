@@ -13,10 +13,9 @@ enum itemInfoType: String {
 }
 
 class GFItemInfoView: UIView {
-
     let symbolImageView = UIImageView()
-    let titleLabel = GFTitleLabel(textAlignment: .left, fontSize: 14)
-    let countLabel = GFTitleLabel(textAlignment: .center, fontSize: 14)
+    let titleLabel      = GFTitleLabel(textAlignment: .left, fontSize: 14)
+    let countLabel      = GFTitleLabel(textAlignment: .center, fontSize: 14)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,9 +27,7 @@ class GFItemInfoView: UIView {
     }
     
     func configue() {
-        addSubview(symbolImageView)
-        addSubview(titleLabel)
-        addSubview(countLabel)
+        addSubviews(symbolImageView, titleLabel, countLabel)
         
         symbolImageView.translatesAutoresizingMaskIntoConstraints = false
         symbolImageView.contentMode = .scaleAspectFill
@@ -55,7 +52,6 @@ class GFItemInfoView: UIView {
     }
 
     func set(itemInfoType: itemInfoType, with count: Int) {
-        
         switch itemInfoType {
         case .repos:
             titleLabel.text       = "Public Repos"

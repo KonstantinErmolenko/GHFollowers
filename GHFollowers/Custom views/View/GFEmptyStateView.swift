@@ -28,14 +28,14 @@ class GFEmptyStateView: UIView {
     }
     
     func configue() {
+        addSubviews(messageLabel, logoImageView)
+        
         configueMessageLabel()
         configueLogoImageView()
         backgroundColor = .systemBackground
     }
     
     func configueMessageLabel() {
-        addSubview(messageLabel)
-        
         messageLabel.textColor     = .secondaryLabel
         messageLabel.numberOfLines = 3
         
@@ -49,8 +49,6 @@ class GFEmptyStateView: UIView {
     }
     
     func configueLogoImageView() {
-        addSubview(logoImageView)
-        
         logoImageView.image = Images.emptyStateLogo
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         

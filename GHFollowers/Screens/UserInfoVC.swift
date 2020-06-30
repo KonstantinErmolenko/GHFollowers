@@ -80,12 +80,7 @@ class UserInfoVC: GFDataLoadingVC {
         let padding: CGFloat    = 20
         let itemHeight: CGFloat = 140
         
-        let itemViews = [headerView, itemViewOne, itemViewTwo, dateLabel]
-
-        for itemView in itemViews {
-            view.addSubview(itemView)
-            itemView.translatesAutoresizingMaskIntoConstraints = false
-        }
+        view.addSubviews(headerView, itemViewOne, itemViewTwo, dateLabel)
 
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
@@ -101,7 +96,9 @@ class UserInfoVC: GFDataLoadingVC {
             dateLabel.heightAnchor.constraint(equalToConstant: 18)
         ])
         
+        let itemViews = [headerView, itemViewOne, itemViewTwo, dateLabel]
         for itemView in itemViews {
+            itemView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
                 itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
