@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A91329EB24ACDFD600E2B6DD /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91329EA24ACDFD600E2B6DD /* UITableView+Ext.swift */; };
 		A91FF33F2488E22300F33123 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91FF33E2488E22300F33123 /* UIHelper.swift */; };
 		A952D4FF2480399B005BA20F /* FollowersListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A952D4FE2480399B005BA20F /* FollowersListVC.swift */; };
 		A95AB35824840E1A0008A301 /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95AB35724840E1A0008A301 /* GFTitleLabel.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A91329EA24ACDFD600E2B6DD /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		A91FF33E2488E22300F33123 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		A952D4FE2480399B005BA20F /* FollowersListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListVC.swift; sourceTree = "<group>"; };
 		A95AB35724840E1A0008A301 /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
@@ -167,8 +169,9 @@
 		A987942F2485896600C48AC8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A987942A2485890B00C48AC8 /* UIViewController+Ext.swift */,
 				A9D9D9C224AA434E00141C2C /* UIView+Ext.swift */,
+				A91329EA24ACDFD600E2B6DD /* UITableView+Ext.swift */,
+				A987942A2485890B00C48AC8 /* UIViewController+Ext.swift */,
 				A9AD0B5F24A51A6000074843 /* Date+Ext.swift */,
 			);
 			path = Extensions;
@@ -387,6 +390,7 @@
 				A96A1DD1247C3AAD00B84212 /* SearchVC.swift in Sources */,
 				A9A24C4C247AD244006BCB06 /* AppDelegate.swift in Sources */,
 				A9A24C4E247AD244006BCB06 /* SceneDelegate.swift in Sources */,
+				A91329EB24ACDFD600E2B6DD /* UITableView+Ext.swift in Sources */,
 				A9702B3924A385EC001444F5 /* GFRepoItemVC.swift in Sources */,
 				A976A5ED249A740A00E369D5 /* UserInfoVC.swift in Sources */,
 			);
