@@ -13,6 +13,8 @@ protocol UserInfoVCDelegate: class {
 }
 
 class UserInfoVC: GFDataLoadingVC {
+    let scrollView          = UIScrollView()
+    let contentView         = UIView()
     
     let headerView          = UIView()
     let itemViewOne         = UIView()
@@ -25,13 +27,15 @@ class UserInfoVC: GFDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        configueNavigationBar()
+        configueViewController()
+        configueScrollView()
         layoutUI()
         getUserInfo()
     }
     
-    func configueNavigationBar() {
+    func configueViewController() {
+        view.backgroundColor = .systemBackground
+
         let doneButton = UIBarButtonItem(
             barButtonSystemItem: .done,
             target: self,
@@ -41,25 +45,17 @@ class UserInfoVC: GFDataLoadingVC {
         navigationItem.title = username
     }
     
-   @objc func dismissVC() {
-        dismiss(animated: true)
-    }
-    
-    func getUserInfo() {
-        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result{
-            case .success(let user):
-                DispatchQueue.main.async {
-                    self.configueUIElements(with: user)
-                }
-            case .failure(let error):
-                self.presentGFAlertOnMainThread(title: "Something went wrong.",
-                                                message: error.rawValue,
-                                                buttonTitle: "Ok")
-            }
-        }
+    func configueScrollView() {
+        view.addSubview(scrollView)
+        scrollView.pinToEdges(of: view)
+        
+        scrollView.addSubview(contentView)
+        contentView.pinToEdges(of: scrollView)
+        
+        NSLayoutConstraint.activate([
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 615)
+        ])
     }
     
     func configueUIElements(with user: User) {
@@ -73,10 +69,10 @@ class UserInfoVC: GFDataLoadingVC {
         let padding: CGFloat    = 20
         let itemHeight: CGFloat = 140
         
-        view.addSubviews(headerView, itemViewOne, itemViewTwo, dateLabel)
+        scrollView.addSubviews(headerView, itemViewOne, itemViewTwo, dateLabel)
 
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
+            headerView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: padding),
             headerView.heightAnchor.constraint(equalToConstant: 210),
             
             itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
@@ -93,8 +89,8 @@ class UserInfoVC: GFDataLoadingVC {
         for itemView in itemViews {
             itemView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+                itemView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -padding)
             ])
         }
     }
@@ -105,6 +101,27 @@ class UserInfoVC: GFDataLoadingVC {
         childVC.view.frame = containerView.bounds
         childVC.didMove(toParent: self)
     }
+
+    @objc func dismissVC() {
+         dismiss(animated: true)
+     }
+     
+     func getUserInfo() {
+         NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+             guard let self = self else { return }
+             
+             switch result{
+             case .success(let user):
+                 DispatchQueue.main.async {
+                     self.configueUIElements(with: user)
+                 }
+             case .failure(let error):
+                 self.presentGFAlertOnMainThread(title: "Something went wrong.",
+                                                 message: error.rawValue,
+                                                 buttonTitle: "Ok")
+             }
+         }
+     }
 }
 
 extension UserInfoVC: GFRepoItemVCDelegate {
