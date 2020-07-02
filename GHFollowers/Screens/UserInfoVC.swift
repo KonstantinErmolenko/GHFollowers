@@ -9,11 +9,12 @@
 import UIKit
 
 protocol UserInfoVCDelegate: class {
-    func didTapGithubProfile(for user: User)
-    func didTapGetFollowers(for user: User)
+    func didRequestFollowers(for username: String)
 }
 
-class UserInfoVC: UIViewController {
+class UserInfoVC: GFDataLoadingVC {
+    let scrollView          = UIScrollView()
+    let contentView         = UIView()
     
     let headerView          = UIView()
     let itemViewOne         = UIView()
@@ -22,17 +23,19 @@ class UserInfoVC: UIViewController {
     var itemViews: [UIView] = []
     
     var username: String!
-    weak var delegate: FollowersListVCDelegate!
+    weak var delegate: UserInfoVCDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        configueNavigationBar()
+        configueViewController()
+        configueScrollView()
         layoutUI()
         getUserInfo()
     }
     
-    func configueNavigationBar() {
+    func configueViewController() {
+        view.backgroundColor = .systemBackground
+
         let doneButton = UIBarButtonItem(
             barButtonSystemItem: .done,
             target: self,
@@ -42,54 +45,35 @@ class UserInfoVC: UIViewController {
         navigationItem.title = username
     }
     
-   @objc func dismissVC() {
-        dismiss(animated: true)
-    }
-    
-    func getUserInfo() {
-        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result{
-            case .success(let user):
-                DispatchQueue.main.async {
-                    self.configueUIElements(with: user)
-                }
-            case .failure(let error):
-                self.presentGFAlertOnMainThread(title: "Something went wrong.",
-                                                message: error.rawValue,
-                                                buttonTitle: "Ok")
-            }
-        }
+    func configueScrollView() {
+        view.addSubview(scrollView)
+        scrollView.pinToEdges(of: view)
+        
+        scrollView.addSubview(contentView)
+        contentView.pinToEdges(of: scrollView)
+        
+        NSLayoutConstraint.activate([
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 615)
+        ])
     }
     
     func configueUIElements(with user: User) {
-        let repoItemVC = GFRepoItemVC(user: user)
-        repoItemVC.delegate = self
-        self.add(childVC: repoItemVC, to: self.itemViewOne)
-        
-        let followerItemVC = GFFollowerItemVC(user: user)
-        followerItemVC.delegate = self
-        self.add(childVC: followerItemVC, to: self.itemViewTwo)
-        
+        self.add(childVC: GFRepoItemVC(user: user, delegate: self), to: self.itemViewOne)
+        self.add(childVC: GFFollowerItemVC(user: user, delegate: self), to: self.itemViewTwo)
         self.add(childVC: GFUserInfoHeaderVC(user: user), to: self.headerView)
-        self.dateLabel.text = "GitHub since \(user.createdAt.convertToDisplayFormat())"
+        self.dateLabel.text = "GitHub since \(user.createdAt.convertToMonthYearFormat())"
     }
     
     func layoutUI() {
         let padding: CGFloat    = 20
         let itemHeight: CGFloat = 140
         
-        let itemViews = [headerView, itemViewOne, itemViewTwo, dateLabel]
-
-        for itemView in itemViews {
-            view.addSubview(itemView)
-            itemView.translatesAutoresizingMaskIntoConstraints = false
-        }
+        scrollView.addSubviews(headerView, itemViewOne, itemViewTwo, dateLabel)
 
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
-            headerView.heightAnchor.constraint(equalToConstant: 180),
+            headerView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: padding),
+            headerView.heightAnchor.constraint(equalToConstant: 210),
             
             itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
             itemViewOne.heightAnchor.constraint(equalToConstant: itemHeight),
@@ -98,13 +82,15 @@ class UserInfoVC: UIViewController {
             itemViewTwo.heightAnchor.constraint(equalToConstant: itemHeight),
             
             dateLabel.topAnchor.constraint(equalTo: itemViewTwo.bottomAnchor, constant: padding),
-            dateLabel.heightAnchor.constraint(equalToConstant: 18)
+            dateLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
         
+        let itemViews = [headerView, itemViewOne, itemViewTwo, dateLabel]
         for itemView in itemViews {
+            itemView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                itemView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-                itemView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+                itemView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: padding),
+                itemView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -padding)
             ])
         }
     }
@@ -115,9 +101,32 @@ class UserInfoVC: UIViewController {
         childVC.view.frame = containerView.bounds
         childVC.didMove(toParent: self)
     }
+
+    @objc func dismissVC() {
+         dismiss(animated: true)
+     }
+     
+     func getUserInfo() {
+         NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+             guard let self = self else { return }
+             
+             switch result{
+             case .success(let user):
+                 DispatchQueue.main.async {
+                     self.configueUIElements(with: user)
+                 }
+             case .failure(let error):
+                 self.presentGFAlertOnMainThread(title: "Something went wrong.",
+                                                 message: error.rawValue,
+                                                 buttonTitle: "Ok")
+             }
+         }
+     }
 }
 
-extension UserInfoVC: UserInfoVCDelegate {
+// MARK: - Extensions
+extension UserInfoVC: GFRepoItemVCDelegate {
+    
     func didTapGithubProfile(for user: User) {
         guard let url = URL(string: user.htmlUrl) else {
             presentGFAlertOnMainThread(
@@ -130,6 +139,9 @@ extension UserInfoVC: UserInfoVCDelegate {
         
         presentSafariVC(with: url) 
     }
+}
+
+extension UserInfoVC: GFFollowerItemVCDelegate {
     
     func didTapGetFollowers(for user: User) {
         guard user.followers != 0 else {

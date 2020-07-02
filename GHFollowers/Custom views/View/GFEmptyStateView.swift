@@ -9,19 +9,18 @@
 import UIKit
 
 class GFEmptyStateView: UIView {
-
-    let messageLabel = GFTitleLabel(textAlignment: .center, fontSize: 28)
-    let logoImageView    = UIImageView()
+    
+    let messageLabel  = GFTitleLabel(textAlignment: .center, fontSize: 28)
+    let logoImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configue()
     }
     
-    init(message: String) {
-        super.init(frame: .zero)
+    convenience init(message: String) {
+        self.init(frame: .zero)
         messageLabel.text = message
-        configue()
     }
     
     required init?(coder: NSCoder) {
@@ -29,25 +28,39 @@ class GFEmptyStateView: UIView {
     }
     
     func configue() {
-        addSubview(messageLabel)
-        addSubview(logoImageView)
-        
+        addSubviews(messageLabel, logoImageView)
+        configueMessageLabel()
+        configueLogoImageView()
+        backgroundColor = .systemBackground
+    }
+    
+    func configueMessageLabel() {
         messageLabel.textColor     = .secondaryLabel
         messageLabel.numberOfLines = 3
         
-        logoImageView.image        = UIImage(named: "empty-state-logo")
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        let topConstant: CGFloat = DeviceTypes.isSmallScreenSize() ? -85 : -150
         
         NSLayoutConstraint.activate([
-            messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -150),
+            messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor,
+                                                  constant: topConstant),
             messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
             messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
-            messageLabel.heightAnchor.constraint(equalToConstant: 200),
-            
+            messageLabel.heightAnchor.constraint(equalToConstant: 200)
+        ])
+    }
+    
+    func configueLogoImageView() {
+        logoImageView.image = Images.emptyStateLogo
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let bottomConstant: CGFloat = DeviceTypes.isSmallScreenSize() ? 85 : 40
+        
+        NSLayoutConstraint.activate([
             logoImageView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
             logoImageView.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3),
             logoImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 170),
-            logoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 40)
+            logoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor,
+                                                  constant: bottomConstant)
         ])
     }
 }

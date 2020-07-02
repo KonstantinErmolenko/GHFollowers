@@ -15,11 +15,9 @@ class GFSecondaryTitleLable: UILabel {
         configue()
     }
     
-    init(fontSize: CGFloat) {
-        super.init(frame: .zero)
-        
+    convenience init(fontSize: CGFloat) {
+        self.init(frame: .zero)
         self.font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
-        configue()
     }
     
     required init?(coder: NSCoder) {
@@ -27,9 +25,9 @@ class GFSecondaryTitleLable: UILabel {
     }
     
     private func configue() {
-        textColor                 = .secondaryLabel
-        minimumScaleFactor        = 0.9
-        lineBreakMode             = .byTruncatingTail
+        textColor          = .secondaryLabel
+        minimumScaleFactor = 0.9
+        lineBreakMode      = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
     }
 
