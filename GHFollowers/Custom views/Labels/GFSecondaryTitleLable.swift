@@ -25,9 +25,9 @@ class GFSecondaryTitleLable: UILabel {
     }
     
     private func configue() {
-        textColor                 = .secondaryLabel
-        minimumScaleFactor        = 0.9
-        lineBreakMode             = .byTruncatingTail
+        textColor          = .secondaryLabel
+        minimumScaleFactor = 0.9
+        lineBreakMode      = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
     }
 

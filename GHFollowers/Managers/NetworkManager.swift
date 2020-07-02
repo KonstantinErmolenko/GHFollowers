@@ -9,9 +9,10 @@
 import UIKit
 
 class NetworkManager {
+    
     static let shared   = NetworkManager()
-    let cache           = NSCache<NSString, UIImage>()
     private let baseUrl = "https://api.github.com"
+    let cache           = NSCache<NSString, UIImage>()
     
     private init() {}
     
@@ -24,7 +25,6 @@ class NetworkManager {
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            
             if let _ = error {
                 completed(.failure(.unableToComplete))
                 return
@@ -62,7 +62,6 @@ class NetworkManager {
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            
             if let _ = error {
                 completed(.failure(.unableToComplete))
                 return
@@ -116,6 +115,7 @@ class NetworkManager {
             self.cache.setObject(image, forKey: cacheKey)
             completed(image)
         }
+        
         dataTask.resume()
     }
 }

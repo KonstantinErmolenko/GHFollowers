@@ -124,7 +124,9 @@ class UserInfoVC: GFDataLoadingVC {
      }
 }
 
+// MARK: - Extensions
 extension UserInfoVC: GFRepoItemVCDelegate {
+    
     func didTapGithubProfile(for user: User) {
         guard let url = URL(string: user.htmlUrl) else {
             presentGFAlertOnMainThread(
@@ -140,6 +142,7 @@ extension UserInfoVC: GFRepoItemVCDelegate {
 }
 
 extension UserInfoVC: GFFollowerItemVCDelegate {
+    
     func didTapGetFollowers(for user: User) {
         guard user.followers != 0 else {
             presentGFAlertOnMainThread(

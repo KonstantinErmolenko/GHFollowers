@@ -9,6 +9,7 @@
 import UIKit
 
 class GFAlertVC: UIViewController {
+    
     let containerView = GFAlertContainerView()
     let titleLabel    = GFTitleLabel(textAlignment: .center, fontSize: 20)
     let messageLabel  = GFBodyLabel(textAlignment: .center)
@@ -21,8 +22,7 @@ class GFAlertVC: UIViewController {
     var padding: CGFloat = 20
 
     init(title: String, message: String, buttonTitle: String) {
-        super.init(nibName: nil, bundle: nil)
-        
+        super.init(nibName: nil, bundle: nil) 
         self.alertTitle  = title
         self.message     = message
         self.buttonTitle = buttonTitle
@@ -34,8 +34,9 @@ class GFAlertVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        view.addSubviews(containerView, titleLabel, actionButton, messageLabel)
+        
         configueContainerView()
         configueTitleLabel()
         configreActionButton()
@@ -43,8 +44,6 @@ class GFAlertVC: UIViewController {
     }
     
     func configueContainerView() {
-        view.addSubview(containerView)
-        
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -54,7 +53,6 @@ class GFAlertVC: UIViewController {
     }
     
     func configueTitleLabel() {
-        containerView.addSubview(titleLabel)
         titleLabel.text = alertTitle ?? "Something went wrong"
         
         NSLayoutConstraint.activate([
@@ -66,8 +64,6 @@ class GFAlertVC: UIViewController {
     }
 
     func configreActionButton() {
-        containerView.addSubview(actionButton)
-        
         actionButton.setTitle(buttonTitle ?? "Ok", for: .normal)
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         
@@ -84,8 +80,6 @@ class GFAlertVC: UIViewController {
     }
     
     func configueMessageLabel() {
-        containerView.insertSubview(messageLabel, belowSubview: titleLabel)
-        
         messageLabel.text          = message ?? "Unable to complete request"
         messageLabel.numberOfLines = 4
         
